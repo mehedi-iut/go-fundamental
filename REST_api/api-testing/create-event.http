@@ -1,0 +1,13 @@
+### POST request to example server
+POST http://localhost:9090/events
+content-type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QzQGV4YW1wbGUuY29tIiwiZXhwIjoxNzE3MTU4NjAxLCJ1c2VySWQiOjB9.5QvPtKxaP_PLejAS9r0m_hZ-vfmZTRkzW_KYmL7-TNk
+
+{
+  "name": "Test 4",
+  "description": "A test event 4 ",
+  "location": "Number 4 test location",
+  "dateTime": "2024-01-03T15:30:00.000Z"
+}
+
+
