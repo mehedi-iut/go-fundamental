@@ -12,7 +12,7 @@ type User struct {
 	Password string `binding:"required" json:"password"`
 }
 
-func (u User) Save() error {
+func (u *User) Save() error {
 	query := "INSERT INTO users (email, password) VALUES ($1, $2)"
 	stmt, err := db.DB.Prepare(query)
 	if err != nil {
@@ -39,7 +39,7 @@ func (u User) Save() error {
 	return nil
 }
 
-func (u User) ValidateCredentials() error {
+func (u *User) ValidateCredentials() error {
 	query := "SELECT id, password FROM users WHERE email = $1"
 	row := db.DB.QueryRow(query, u.Email)
 

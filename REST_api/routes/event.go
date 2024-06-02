@@ -53,7 +53,7 @@ func createEvent(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err := utils.VerifyToken(token)
+	userId, err := utils.VerifyToken(token)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusUnauthorized)
 	}
@@ -64,6 +64,7 @@ func createEvent(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	event.DateTime = time.Now()
+	event.UserID = uint(userId)
 	err = event.Save()
 	if err != nil {
 		fmt.Println(err)
