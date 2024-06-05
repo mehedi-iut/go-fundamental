@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-func signup(w http.ResponseWriter, r *http.Request) {
+func Signup(w http.ResponseWriter, r *http.Request) {
 	var user models.User
 	decoder := json.NewDecoder(r.Body)
 	err := decoder.Decode(&user)
@@ -26,7 +26,7 @@ func signup(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func login(w http.ResponseWriter, r *http.Request) {
+func Login(w http.ResponseWriter, r *http.Request) {
 	var user models.User
 	decoder := json.NewDecoder(r.Body)
 	err := decoder.Decode(&user)

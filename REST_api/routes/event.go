@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-func getEvents(w http.ResponseWriter, r *http.Request) {
+func GetEvents(w http.ResponseWriter, r *http.Request) {
 	events, err := models.GetAllEvents()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -25,7 +25,7 @@ func getEvents(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func getEvent(w http.ResponseWriter, r *http.Request) {
+func GetEvent(w http.ResponseWriter, r *http.Request) {
 	id, err := strconv.ParseUint(r.PathValue("id"), 10, 32)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
@@ -46,7 +46,7 @@ func getEvent(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func createEvent(w http.ResponseWriter, r *http.Request) {
+func CreateEvent(w http.ResponseWriter, r *http.Request) {
 	token := r.Header.Get("Authorization")
 	if token == "" {
 		http.Error(w, "Unauthorized", http.StatusUnauthorized)
@@ -79,16 +79,21 @@ func createEvent(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func updateEvent(w http.ResponseWriter, r *http.Request) {
+func UpdateEvent(w http.ResponseWriter, r *http.Request) {
 	id, err := strconv.ParseUint(r.PathValue("id"), 10, 64)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
-	_, err = models.GetEventByID(uint(id))
+	userId := r.Context().Value("userId").(int64)
+	e, err := models.GetEventByID(uint(id))
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	if e.UserID != uint(userId) {
+		http.Error(w, "Unauthorized", http.StatusUnauthorized)
 		return
 	}
 
@@ -116,16 +121,23 @@ func updateEvent(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func deleteEvent(w http.ResponseWriter, r *http.Request) {
+func DeleteEvent(w http.ResponseWriter, r *http.Request) {
 	id, err := strconv.ParseUint(r.PathValue("id"), 10, 64)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
+	userId := r.Context().Value("userId").(int64)
+
 	event, err := models.GetEventByID(uint(id))
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	if event.UserID != uint(userId) {
+		http.Error(w, "Unauthorized", http.StatusUnauthorized)
 		return
 	}
 

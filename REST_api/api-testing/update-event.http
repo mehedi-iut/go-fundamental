@@ -1,9 +1,11 @@
-PUT http://localhost:9090/events/4
+PUT http://localhost:9090/events/9
 content-type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3Q0QGV4YW1wbGUuY29tIiwiZXhwIjoxNzE3NDE1MDY2LCJ1c2VySWQiOjIwfQ.OUvAs5gA_psZm5bLqllo2rc0R_n12FZ8LOpbNDSPxe0
+
 
 {
-  "name": "Updated test event",
-  "description": "A test event",
+  "name": "Updated test 420 event",
+  "description": "A test 420  event",
   "location": "Test location (updated!)",
   "dateTime": "2024-01-03T15:30:00.000Z"
 }

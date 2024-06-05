@@ -1,12 +1,12 @@
 ### POST request to example server
 POST http://localhost:9090/events
 content-type: application/json
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3Q0QGV4YW1wbGUuY29tIiwiZXhwIjoxNzE3MzE1NTE1LCJ1c2VySWQiOjJ9.Nc9xKgz_jTbjtL5MheY00InLUYz-oUUnfYlClegIHM4
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyMEBleGFtcGxlLmNvbSIsImV4cCI6MTcxNzQwNDYwNywidXNlcklkIjoyMX0.fJGYu1G6bif-qEAM7BNnjRh25ldPLK7JF7kj_VqA_2Y
 
 {
-  "name": "Test 5",
-  "description": "A test event 5 ",
-  "location": "Number 5 test location",
+  "name": "Test 20",
+  "description": "A test event 20 ",
+  "location": "Number 20 test location",
   "dateTime": "2024-01-03T15:30:00.000Z"
 }
 
